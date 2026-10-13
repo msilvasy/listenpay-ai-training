@@ -1,0 +1,286 @@
+<div class="portal-shell">
+  <div class="side-menu-overlay" [class.open]="menuOpen()" (click)="menuOpen.set(false)"></div>
+  <aside class="side-menu" [class.open]="menuOpen()" aria-label="Account navigation">
+    <div class="side-menu-header">
+      <div class="menu-user">
+        <div class="menu-avatar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-user-round">
+            <circle cx="12" cy="8" r="5" />
+            <path d="M20 21a8 8 0 0 0-16 0" />
+          </svg>
+        </div>
+        <div><strong>{{ memberName() ?? 'Loading member' }}</strong><span>Content Engagement Portal</span>
+        </div>
+      </div><button class="side-menu-close" type="button" aria-label="Close menu"
+        (click)="menuOpen.set(false)">×</button>
+    </div>
+    <nav class="menu-items">@for (item of navigation; track item.path) { <a class="menu-item" [routerLink]="item.path"
+        routerLinkActive="active-menu" (click)="menuOpen.set(false)"><i [class]="item.icon + ' menu-item-icon'"
+          aria-hidden="true"></i><span>{{ item.label }}</span></a> }</nav>
+    <div class="menu-theme-toggle">
+      <span>{{ industry().themeLabel }}</span>
+      <button type="button" class="theme-switch" role="switch" [attr.aria-checked]="isIndustryTheme()"
+        [class.on]="isIndustryTheme()" (click)="toggleTheme()" [attr.aria-label]="'Toggle ' + industry().themeLabel + ' theme'">
+        <span class="theme-switch-thumb"></span>
+      </button>
+    </div>
+    <div class="menu-signout"><button class="menu-signout-btn" type="button" (click)="signOut()">↪ Sign
+        out</button></div>
+  </aside>
+
+  <header class="hero-header">
+    <div class="pulse-badge"><span>Live</span></div>
+    <div class="hero-logo"><img src="/assets/images/listenpay-supplied-logo.png" alt="ListenPay Logo"
+        style="width: 20%; height: auto;" />
+      <span class="hero-balance"><strong>{{ balance() ?? 'Loading…' }}</strong></span>
+    </div>
+    <button class="hero-user-btn" type="button" (click)="menuOpen.set(true)" aria-label="Open account menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-user-round">
+        <circle cx="12" cy="8" r="5" />
+        <path d="M20 21a8 8 0 0 0-16 0" />
+      </svg>
+    </button>
+  </header>
+  <section class="page-subheader">
+    <div class="avatar-circle" [class.has-category-icon]="pageMeta().iconSrc">
+      @if (pageMeta().iconSrc) {
+      <img [src]="pageMeta().iconSrc" [alt]="pageMeta().title + ' icon'" (error)="iconFallback($event)" />
+      } @else if (page() === 'profile') {
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"
+        aria-hidden="true">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+      } @else if (page() === 'analytics') {
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-trending-up" aria-hidden="true">
+        <path d="M16 7h6v6" />
+        <path d="m22 7-8.5 8.5-5-5L2 17" />
+      </svg>
+      } @else if (page() === 'rewards') {
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift"
+        aria-hidden="true">
+        <path d="M12 7v14" />
+        <path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" />
+        <path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5" />
+        <rect x="3" y="7" width="18" height="4" rx="1" />
+      </svg>
+      } @else if (page() === 'support') {
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-life-buoy" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m4.93 4.93 4.24 4.24" />
+        <path d="m14.83 9.17 4.24-4.24" />
+        <path d="m14.83 14.83 4.24 4.24" />
+        <path d="m9.17 14.83-4.24 4.24" />
+        <circle cx="12" cy="12" r="4" />
+      </svg>
+      } @else {
+      {{ pageMeta().symbol }}
+      }
+    </div>
+    <div class="page-title">
+      <h1>{{ pageMeta().title }}</h1>
+      <p>Content Engagement Portal</p>
+    </div>@if (page() !== 'dashboard') { <button class="back-btn" type="button" (click)="go(backPath())">←
+      Back</button> }
+  </section>
+
+  <main class="main-content">
+    @if (page() === 'dashboard') {
+    <section class="hero-banner dashboard-banner"><img [src]="industry().bannerImage"
+        [alt]="industry().bannerAlt" />
+      <div class="banner-badge">◷ <span>{{ industry().badge }}</span></div>
+      <div class="hero-earning-chip"><b>Next reward</b><span>{{ summary()?.nextReward?.amount ?? '…' }} · {{
+          summary()?.nextReward?.module ?? 'Loading' }}</span></div>
+      <div class="banner-overlay"><span class="banner-kicker">{{ industry().bannerKicker }}</span>
+        <h2>{{ industry().bannerTitle }}</h2>
+        <p>{{ industry().bannerCopy }}</p>
+      </div>
+    </section>
+    <div class="med-info-strip"><span>i</span> {{ industry().infoStrip }}</div>
+    @if (apiConnected() && parentCategories().state !== 'error') {
+    <!-- Parent category tiles from the ListenPay API (ListenPay2026 landing page). -->
+    @if (parentCategories().state === 'ready') { @if (parentCategories().data.length) { <section class="category-grid"
+      aria-label="Program categories">@for (category of parentCategories().data; track category.youTubeVideoCategoryId)
+      { <a class="category-card" [routerLink]="['/programs', category.youTubeVideoCategoryId]"><span
+          class="cat-icon-wrap"><img [src]="categoryIcon(category)" [alt]="category.title + ' icon'"
+            (error)="iconFallback($event)" /></span><span class="cat-label">{{ category.title }}</span><span
+          class="cat-sub">View programs</span><span class="signal-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></a>
+      }</section> } @else { <div class="loading-panel program-message">No programs have been assigned to your company
+      yet.</div> } } @else { <ng-container [ngTemplateOutlet]="tileLoading"></ng-container> }
+    } @else {
+    @if (parentCategories().state === 'error') { <div class="loading-panel program-message"><span>We couldn't load your
+        programs from ListenPay, so sample categories are shown.</span><button type="button" class="program-retry"
+        (click)="retryCategories()">Try again</button></div> }
+    @if (summary(); as overview) { <section class="category-grid" aria-label="Learning categories">@for (category of
+      overview.categories; track category.id) { <a class="category-card" [routerLink]="category.path"><span
+          class="cat-icon-wrap"><img [src]="category.iconSrc" [alt]="category.label + ' icon'" /></span><span
+          class="cat-label">{{ category.label }}</span><span class="cat-sub">{{ category.progressLabel }}</span><span
+          class="category-meter"><i [style.width.%]="category.progress"></i></span><span class="signal-bars"
+          aria-hidden="true"><i></i><i></i><i></i><i></i></span></a> }</section> } @else { <section
+      class="category-grid loading-grid" aria-label="Loading learning categories"><span
+        class="loading-card"></span><span class="loading-card"></span><span class="loading-card"></span><span
+        class="loading-card"></span></section> }
+    }
+    <div class="tagline-wrap">
+      <h2>Increase Human Capital</h2>
+      <p>{{ industry().tagline }}</p>
+    </div>
+    }
+
+    @if (page() === 'health') { <section class="hero-banner"><img src="/assets/images/nurse.jpg"
+        alt="Healthcare professional with laptop" />
+      <div class="banner-badge">◷ <span>CME Eligible</span></div>
+      <div class="banner-overlay">
+        <h2>Heart Health Series</h2>
+        <p>5 videos · 71% complete · Earn up to $21.25</p>
+      </div>
+    </section>
+    <div class="section-header">
+      <h2><span class="section-category-icon"><img src="/assets/images/health-wellness.png" alt="" /></span>
+        Heart Health</h2>
+      <div class="platform-icons"><button type="button" title="YouTube">▶</button><button type="button"
+          title="Spotify">●</button><button type="button" title="Transcript">☷</button></div>
+    </div><ng-container [ngTemplateOutlet]="moduleList"></ng-container> }
+    @if (page() === 'safety') { <section class="hero-banner"><img src="/assets/images/dock-worker.jpg"
+        alt="Worker in a vehicle wearing a communications headset" />
+      <div class="banner-overlay">
+        <h2>Safety & Training</h2>
+        <p>38% complete · Keep going to earn more.</p>
+      </div>
+    </section>
+    <div class="section-header">
+      <h2><span class="section-category-icon"><img src="/assets/images/safety.png" alt="" /></span> Workplace
+        Safety</h2>
+    </div><ng-container [ngTemplateOutlet]="moduleList"></ng-container> }
+    @if (page() === 'diversity') { <section class="hero-banner"><img src="/assets/images/union-worker.jpg"
+        alt="Worker in a training environment" />
+      <div class="banner-overlay">
+        <h2>Diversity & Inclusion</h2>
+        <p>Start your journey — 3 modules available.</p>
+      </div>
+    </section>
+    <div class="section-header">
+      <h2><span class="section-category-icon"><img src="/assets/images/diversity.png" alt="" /></span>
+        Diversity & Inclusion</h2>
+    </div><ng-container [ngTemplateOutlet]="moduleList"></ng-container> }
+    @if (page() === 'esg') { <section class="reading-panel"><span class="reading-category-icon"><img
+          src="/assets/images/esg.png" alt="" /></span><span class="panel-kicker">Learning library</span>
+      <h2>Build a sustainable operating culture.</h2>
+      <p>Explore concise, practical training on environmental, social, and governance commitments.</p>
+    </section><ng-container [ngTemplateOutlet]="moduleList"></ng-container> }
+
+    @if (page() === 'programs') { <section class="hero-banner"><img [src]="industry().bannerImage"
+        [alt]="industry().bannerAlt" />
+      <div class="banner-overlay"><span class="banner-kicker">Content Engagement Portal</span>
+        <h2>{{ parentCategory()?.title ?? 'Programs' }}</h2>
+        <p>Choose a category to start watching and earning.</p>
+      </div>
+    </section>
+    <!-- Child category tiles (ListenPay2026 health-wellness-categories). -->
+    @if (!apiConnected()) { <ng-container [ngTemplateOutlet]="notConnected"></ng-container> }
+    @else if (childCategories().state === 'error') { <div class="loading-panel program-message"><span>We couldn't load
+        these categories.</span><button type="button" class="program-retry" (click)="retryCategories()">Try
+        again</button></div> }
+    @else if (childCategories().state !== 'ready') { <ng-container [ngTemplateOutlet]="tileLoading"></ng-container> }
+    @else if (childCategories().data.length === 0) { <div class="loading-panel program-message">No categories under this
+      program yet.</div> }
+    @else { <section class="category-grid" aria-label="Categories">@for (child of childCategories().data; track
+      child.youTubeVideoCategoryId) { <a class="category-card child-category-card"
+        [routerLink]="['/programs', parentId(), child.youTubeVideoCategoryId]"><span class="cat-icon-wrap"><img
+            [src]="categoryIcon(child)" [alt]="child.title + ' icon'" (error)="iconFallback($event)" /></span><span
+          class="cat-label">{{ child.title }}</span><span class="cat-sub">Watch videos</span><span class="signal-bars"
+          aria-hidden="true"><i></i><i></i><i></i><i></i></span></a> }</section> }
+    }
+
+    @if (page() === 'program-videos') { <section class="hero-banner"><img [src]="programBanner()"
+        [alt]="(childCategory()?.title ?? 'Program') + ' banner'" (error)="bannerError($event)" />
+      <div class="banner-overlay"><span class="banner-kicker">{{ parentCategory()?.title ?? 'Content Engagement Portal'
+          }}</span>
+        <h2>{{ childCategory()?.title ?? 'Videos' }}</h2>
+        <p>Watch to earn. Your progress is saved as you go.</p>
+      </div>
+    </section>
+    <!-- Videos under the child category, played in the video modal (ListenPay2026 hw-category-detail). -->
+    @if (!apiConnected()) { <ng-container [ngTemplateOutlet]="notConnected"></ng-container> }
+    @else if (childId(); as categoryId) { <app-category-videos [categoryId]="categoryId"
+      [categoryTitle]="childCategory()?.title ?? ''" [iconSrc]="categoryIcon(childCategory(), true)" /> }
+    }
+
+    @if (page() === 'profile') { <p class="section-label">Category progress</p>@if (summary(); as overview) { <section
+      class="progress-grid">@for (progress of overview.categories; track progress.id) { <a class="progress-card"
+        [routerLink]="progress.path"><span class="donut" [style.--progress]="progress.progress + '%'"
+          [class.is-empty]="progress.progress === 0"><b>{{ progress.progress }}%</b></span><span class="card-label">{{
+          progress.label }}</span></a> }</section> } @else { <section class="progress-grid loading-grid"><span
+        class="loading-card"></span><span class="loading-card"></span><span class="loading-card"></span><span
+        class="loading-card"></span></section> }<section class="completion-callout"><img
+        src="/assets/images/listenpay-completion-card.jpg" alt="Healthcare learner using a tablet" />
+      <div><span class="panel-kicker">Next milestone</span>
+        <h2>Continue the Heart Health Series.</h2>
+        <p>One more module earns you a completion badge.</p><a routerLink="/health">Resume learning →</a>
+      </div>
+    </section> }
+
+    @if (page() === 'analytics') { <section class="hero-banner"><img [src]="industry().bannerImage"
+        [alt]="industry().bannerAlt" />
+      <div class="banner-overlay"><span class="banner-kicker">{{ industry().analyticsKicker }}</span>
+        <h2>Your learning, earning forward.</h2>
+        <p>Track engagement, completion rates, and earned value.</p>
+      </div>
+    </section>
+    <p class="section-label">Overview</p>@if (analytics(); as snapshot) { <section class="analytics-stats">@for (stat of
+      snapshot.stats; track stat.label) { <div class="stat-card"><strong>{{ stat.value }}</strong><span>{{ stat.label
+          }}</span></div> }</section> } @else { <section class="analytics-stats loading-grid"><span
+        class="loading-card"></span><span class="loading-card"></span><span class="loading-card"></span><span
+        class="loading-card"></span></section> }<p class="section-label">Category completion</p>@if (summary(); as
+    overview) { @for (progress of overview.categories; track progress.id) { <div class="progress-bar-wrap"><label>{{
+        progress.label }} <strong>{{ progress.progress }}%</strong></label><span class="progress-bar-bg"><i
+          [style.width.%]="progress.progress"></i></span></div> } } @else { <div class="loading-panel">Loading
+      completion data…</div> } }
+
+    @if (page() === 'rewards') { @if (summary(); as overview) { <section class="rewards-balance"><span>Available
+        balance</span><strong>{{ overview.formattedBalance }}</strong>
+      <p>Earned through content engagement</p><button type="button">Redeem now</button>
+    </section> } @else { <section class="loading-panel rewards-loader">Loading your balance…</section> }<section
+      class="reward-history">
+      <h2>Recent earnings</h2>@if (earnings(); as entries) { @for (reward of entries; track reward.id) { <div
+        class="reward-row">
+        <div><strong>{{ reward.description }}</strong><span>{{ reward.completedAt }}</span></div><b>+{{ reward.amount
+          }}</b>
+      </div> } } @else { <div class="loading-panel">Loading reward history…</div> }
+    </section> }
+
+    @if (page() === 'support') { <p class="section-label">How can we help?</p>
+    <section class="support-list">@for (item of supportItems; track item.title) { <button class="support-card"
+        type="button"><span>{{ item.symbol }}</span>
+        <div>
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.text }}</p>
+        </div><i>→</i>
+      </button> }</section> }
+  </main>
+  @if (page() === 'dashboard') { <footer class="portal-footer">
+    <div><a href="#">Terms of Service</a><span>|</span><a href="#">Privacy Policy</a><span>|</span><a href="#">{{ industry().complianceLink }}</a></div><small>Copyright ListenPay, LLC | All Rights Reserved © 2025</small>
+  </footer> }
+  <nav class="bottom-nav" aria-label="Primary navigation">@for (item of bottomNav; track item.path) { <a
+      [routerLink]="item.path" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.path === '/dashboard' }"><i [class]="item.icon"
+        aria-hidden="true"></i><span>{{ item.label }}</span></a> }</nav>
+</div>
+<ng-template #moduleList>@if (moduleItems(); as modules) { <div class="content-list">@for (item of modules; track
+    item.id) { <app-content-row [item]="item" /> }</div> } @else { <div class="loading-panel">Loading learning modules…
+  </div> }</ng-template>
+<ng-template #tileLoading><section class="category-grid loading-grid" aria-label="Loading categories"><span
+      class="loading-card"></span><span class="loading-card"></span><span class="loading-card"></span><span
+      class="loading-card"></span></section></ng-template>
+<ng-template #notConnected><div class="loading-panel program-message">Sign in through the ListenPay Dashboard Suite to
+    load your programs.</div></ng-template>

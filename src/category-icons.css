@@ -1,0 +1,50 @@
+/* Clinical Signal Console: supplied program icons form the visual anchor for category navigation and section identity. */
+.cat-icon-wrap,
+.avatar-circle.has-category-icon,
+.section-category-icon,
+.reading-category-icon {
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0b5680, #1d1677);
+  box-shadow: 0 7px 15px rgba(11, 86, 128, 0.19);
+}
+
+.cat-icon-wrap img,
+.avatar-circle.has-category-icon img,
+.section-category-icon img,
+.reading-category-icon img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(2, 31, 52, 0.35));
+}
+
+.cat-icon-wrap {
+  border-radius: 15px;
+}
+
+.avatar-circle.has-category-icon {
+  border-radius: 50%;
+}
+
+.section-category-icon {
+  width: 33px;
+  height: 33px;
+  flex: 0 0 33px;
+  border-radius: 50%;
+}
+
+.reading-category-icon {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 13px;
+  border-radius: 13px;
+}
+
+@media (max-width: 500px) {
+  .cat-icon-wrap {
+    width: 54px;
+    height: 54px;
+  }
+}

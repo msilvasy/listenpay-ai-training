@@ -1,0 +1,5 @@
+/* Clinical Signal Console: Montserrat is the primary voice for product labels, learning metrics, and form controls. */
+html, body, button, input, select, textarea, label, a,
+body * {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}

@@ -1,0 +1,368 @@
+/* ListenPay Programs: industry themes selected from the ListenPay AI Dashboard Suite.
+   HealthcareMode lives in styles.css. IndustrialMode reuses the Dashboard Suite palette
+   (ink #06090d, surface #101822, gold #f0b638, teal #48d1c1, Oswald + DM Mono).
+   CommercialMode is a light slate-and-emerald palette. Loaded after styles.css. */
+
+/* ───────────────────────── Industrial: Dashboard Suite theme ───────────────────────── */
+[data-theme="IndustrialMode"] {
+    color-scheme: dark;
+
+    --navy: #0c1219;
+    --navy-mid: #101822;
+    --blue: #f0b638;
+    --sky: #f0c35e;
+    --teal: #48d1c1;
+    --teal-deep: #1f7f75;
+    --mist: #06090d;
+    --card: #101822;
+    --pale: #18232f;
+    --line: rgba(175, 192, 204, .18);
+    --ink: #f3f6f8;
+    --text: #b6c2cc;
+    --muted: #9aa8b5;
+    --shadow: 0 18px 40px rgba(0, 0, 0, .45);
+
+    --header-background-color: #06090d;
+    --header-border-color: rgba(175, 192, 204, .18);
+    --header-text-1-color: #f3f6f8;
+    --header-text-2-color: #f0b638;
+    --theme-color: #06090d;
+    --text-primary-color: #f0b638;
+    --text-secondary-color: #ff6b5a;
+    --slider-bg-color: #0c1219;
+    --slider-text-color: #f3f6f8;
+    --main-content-background-color: transparent;
+    --main-content-text-color: #f3f6f8;
+    --footer-background-color: #06090d;
+
+    --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+    --font-mono: 'DM Mono', ui-monospace, monospace;
+}
+
+[data-theme="IndustrialMode"] body,
+[data-theme="IndustrialMode"] .portal-shell {
+    background:
+        radial-gradient(900px 460px at 16% 4%, rgba(22, 61, 79, .23), transparent 62%),
+        radial-gradient(620px 460px at 92% 30%, rgba(201, 146, 42, .07), transparent 69%),
+        #06090d;
+}
+
+[data-theme="IndustrialMode"] .hero-header::before {
+    background:
+        radial-gradient(ellipse 64% 130% at 48% -20%, rgba(42, 94, 128, .32), transparent 69%),
+        radial-gradient(ellipse 40% 80% at 90% 50%, rgba(201, 146, 42, .12), transparent 63%);
+}
+
+/* The heartbeat line is a clinical motif; industrial uses the gold signal rail instead. */
+[data-theme="IndustrialMode"] .hero-header::after {
+    height: 2px;
+    opacity: .7;
+    background: linear-gradient(90deg, transparent, var(--blue) 30%, var(--teal) 70%, transparent);
+}
+
+[data-theme="IndustrialMode"] .page-subheader {
+    background: #0c1219;
+    border-bottom: 1px solid var(--line);
+    box-shadow: inset 0 -2px 0 var(--blue);
+}
+
+[data-theme="IndustrialMode"] .avatar-circle {
+    border-color: rgba(240, 182, 56, .5);
+    background: rgba(240, 182, 56, .08);
+}
+
+/* Typography: Oswald display headings, DM Mono labels (beats the Montserrat !important rule). */
+[data-theme="IndustrialMode"] .page-title h1,
+[data-theme="IndustrialMode"] .banner-overlay h2,
+[data-theme="IndustrialMode"] .tagline-wrap h2,
+[data-theme="IndustrialMode"] .section-header h2,
+[data-theme="IndustrialMode"] .completion-callout h2,
+[data-theme="IndustrialMode"] .reading-panel h2,
+[data-theme="IndustrialMode"] .reward-history h2,
+[data-theme="IndustrialMode"] .rewards-balance strong,
+[data-theme="IndustrialMode"] .stat-card strong {
+    font-family: var(--font-display) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -.02em;
+}
+
+[data-theme="IndustrialMode"] .banner-kicker,
+[data-theme="IndustrialMode"] .page-title p,
+[data-theme="IndustrialMode"] .section-label,
+[data-theme="IndustrialMode"] .panel-kicker,
+[data-theme="IndustrialMode"] .pulse-badge,
+[data-theme="IndustrialMode"] .hero-earning-chip b,
+[data-theme="IndustrialMode"] .stat-card span,
+[data-theme="IndustrialMode"] .rewards-balance span,
+[data-theme="IndustrialMode"] .eyebrow,
+[data-theme="IndustrialMode"] .login-kicker,
+[data-theme="IndustrialMode"] .bottom-nav a,
+[data-theme="IndustrialMode"] .portal-footer small {
+    font-family: var(--font-mono) !important;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+/* Surfaces that are hard-coded white in styles.css become dark panels. */
+[data-theme="IndustrialMode"] .med-info-strip,
+[data-theme="IndustrialMode"] .platform-icons button,
+[data-theme="IndustrialMode"] .content-list,
+[data-theme="IndustrialMode"] .donut::before,
+[data-theme="IndustrialMode"] .completion-callout,
+[data-theme="IndustrialMode"] .stat-card,
+[data-theme="IndustrialMode"] .reward-row,
+[data-theme="IndustrialMode"] .support-card,
+[data-theme="IndustrialMode"] .loading-card,
+[data-theme="IndustrialMode"] .loading-panel,
+[data-theme="IndustrialMode"] .login-dialog {
+    background: var(--card);
+    border-color: var(--line);
+}
+
+[data-theme="IndustrialMode"] .reading-panel {
+    background: linear-gradient(135deg, #101822, #0c1219);
+}
+
+[data-theme="IndustrialMode"] .med-info-strip {
+    border-left-color: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .med-info-strip span {
+    color: #06090d;
+}
+
+[data-theme="IndustrialMode"] .category-card,
+[data-theme="IndustrialMode"] .progress-card,
+[data-theme="IndustrialMode"] .video-thumb,
+[data-theme="IndustrialMode"] .content-status.partial,
+[data-theme="IndustrialMode"] .bottom-nav {
+    border-color: var(--line);
+}
+
+[data-theme="IndustrialMode"] .category-card:hover,
+[data-theme="IndustrialMode"] .progress-card:hover {
+    border-color: var(--teal);
+}
+
+[data-theme="IndustrialMode"] .cat-icon-wrap,
+[data-theme="IndustrialMode"] .section-category-icon,
+[data-theme="IndustrialMode"] .reading-category-icon,
+[data-theme="IndustrialMode"] .avatar-circle.has-category-icon {
+    background: linear-gradient(145deg, #1a2633, #0c1219);
+    box-shadow: inset 0 0 0 1px rgba(240, 182, 56, .35);
+}
+
+/* Text that used navy on white needs light ink on the dark surfaces. */
+[data-theme="IndustrialMode"] .tagline-wrap h2,
+[data-theme="IndustrialMode"] .donut b,
+[data-theme="IndustrialMode"] .completion-callout h2,
+[data-theme="IndustrialMode"] .reading-panel h2,
+[data-theme="IndustrialMode"] .stat-card strong,
+[data-theme="IndustrialMode"] .login-form h1,
+[data-theme="IndustrialMode"] .login-form label {
+    color: var(--ink);
+}
+
+[data-theme="IndustrialMode"] .rewards-balance {
+    background: linear-gradient(135deg, #101822, #0c1219 58%, #1f2a1a);
+    border: 1px solid var(--line);
+}
+
+[data-theme="IndustrialMode"] .rewards-balance strong {
+    color: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .rewards-balance button,
+[data-theme="IndustrialMode"] .signin-button {
+    background: var(--blue);
+    color: #06090d;
+}
+
+[data-theme="IndustrialMode"] .content-status.done {
+    border-color: rgba(72, 209, 193, .4);
+    background: rgba(72, 209, 193, .1);
+    color: var(--teal);
+}
+
+[data-theme="IndustrialMode"] .donut.is-empty {
+    background: var(--pale);
+}
+
+[data-theme="IndustrialMode"] .donut.is-empty b,
+[data-theme="IndustrialMode"] .bottom-nav a {
+    color: var(--muted);
+}
+
+[data-theme="IndustrialMode"] .bottom-nav {
+    background: rgba(12, 18, 25, .96);
+    backdrop-filter: blur(8px);
+}
+
+[data-theme="IndustrialMode"] .bottom-nav a.active,
+[data-theme="IndustrialMode"] .bottom-nav a:hover {
+    color: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .hero-banner img {
+    filter: brightness(.6) saturate(.8) grayscale(.2);
+}
+
+[data-theme="IndustrialMode"] .banner-overlay {
+    background: linear-gradient(0deg, rgba(6, 9, 13, .97), rgba(6, 9, 13, .55) 66%, transparent);
+}
+
+[data-theme="IndustrialMode"] .banner-overlay p {
+    color: #b6c2cc;
+}
+
+[data-theme="IndustrialMode"] .banner-badge {
+    background: rgba(6, 9, 13, .8);
+    border-color: rgba(240, 182, 56, .45);
+    color: var(--blue);
+}
+
+/* Account menu: dark slide-out, same treatment HealthcareMode gets in styles.css. */
+[data-theme="IndustrialMode"] .side-menu-header {
+    border-bottom: 1px solid var(--line);
+}
+
+[data-theme="IndustrialMode"] .menu-item-icon {
+    background: rgba(255, 255, 255, .06);
+    color: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .menu-item:hover,
+[data-theme="IndustrialMode"] .menu-item:focus-visible {
+    color: var(--slider-text-color);
+    background: rgba(255, 255, 255, .05);
+}
+
+[data-theme="IndustrialMode"] .menu-item.active-menu {
+    background: rgba(240, 182, 56, .1);
+    color: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .theme-switch {
+    border-color: rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .1);
+}
+
+[data-theme="IndustrialMode"] .theme-switch.on .theme-switch-thumb {
+    background: var(--blue);
+}
+
+[data-theme="IndustrialMode"] .menu-signout-btn {
+    color: #ff8a7a;
+}
+
+[data-theme="IndustrialMode"] .menu-signout-btn:hover {
+    background: rgba(255, 107, 90, .12);
+}
+
+/* Sign-in dialog (shown only when the Suite did not hand over a JWT). */
+[data-theme="IndustrialMode"] .login-mark,
+[data-theme="IndustrialMode"] .modal-close {
+    background: var(--pale);
+    color: var(--ink);
+}
+
+[data-theme="IndustrialMode"] .login-form input:not([type='checkbox']) {
+    border-color: var(--line);
+    background: #0c1219;
+    color: var(--ink);
+}
+
+@media (min-width: 900px) {
+    [data-theme="IndustrialMode"] body {
+        background:
+            radial-gradient(900px 520px at 50% -170px, rgba(42, 94, 128, .32), transparent 67%),
+            radial-gradient(620px 460px at 6% 35%, rgba(201, 146, 42, .09), transparent 69%),
+            #06090d;
+    }
+}
+
+/* ───────────────────────── Commercial: slate & emerald ───────────────────────── */
+[data-theme="CommercialMode"] {
+    --navy: #1b2a41;
+    --navy-mid: #24364f;
+    --blue: #3d5a80;
+    --sky: #98c1d9;
+    --teal: #2bb673;
+    --teal-deep: #1e8a56;
+    --mist: #f4f6f8;
+    --pale: #e6ecf2;
+    --line: #d8dee6;
+    --ink: #1b2a41;
+    --text: #4a5a70;
+    --muted: #8a96a8;
+    --shadow: 0 14px 32px rgba(27, 42, 65, .12);
+
+    --header-background-color: #1b2a41;
+    --header-border-color: transparent;
+    --header-text-1-color: #fff;
+    --header-text-2-color: #2bb673;
+    --theme-color: #1b2a41;
+    --main-content-background-color: transparent;
+    --main-content-text-color: #1b2a41;
+    --footer-background-color: #1b2a41;
+}
+
+[data-theme="CommercialMode"] .hero-header::after {
+    height: 3px;
+    opacity: 1;
+    background: linear-gradient(90deg, var(--teal), var(--sky));
+}
+
+[data-theme="CommercialMode"] .page-subheader {
+    border-bottom-color: var(--teal);
+}
+
+[data-theme="CommercialMode"] .med-info-strip,
+[data-theme="CommercialMode"] .category-card,
+[data-theme="CommercialMode"] .progress-card,
+[data-theme="CommercialMode"] .video-thumb,
+[data-theme="CommercialMode"] .content-status.partial,
+[data-theme="CommercialMode"] .bottom-nav {
+    border-color: var(--line);
+}
+
+[data-theme="CommercialMode"] .med-info-strip {
+    border-left-color: var(--teal);
+}
+
+[data-theme="CommercialMode"] .med-info-strip span {
+    background: var(--teal);
+}
+
+[data-theme="CommercialMode"] .cat-icon-wrap,
+[data-theme="CommercialMode"] .section-category-icon,
+[data-theme="CommercialMode"] .reading-category-icon,
+[data-theme="CommercialMode"] .avatar-circle.has-category-icon {
+    background: linear-gradient(145deg, #3d5a80, #1b2a41);
+}
+
+[data-theme="CommercialMode"] .reading-panel {
+    background: linear-gradient(135deg, #fff, #eef5f1);
+}
+
+[data-theme="CommercialMode"] .bottom-nav a.active,
+[data-theme="CommercialMode"] .bottom-nav a:hover {
+    color: var(--teal-deep);
+}
+
+[data-theme="CommercialMode"] .menu-item.active-menu {
+    background: #eef5f1;
+    color: var(--teal-deep);
+}
+
+[data-theme="CommercialMode"] .theme-switch.on .theme-switch-thumb {
+    background: var(--teal);
+}
+
+@media (min-width: 900px) {
+    [data-theme="CommercialMode"] body {
+        background: linear-gradient(135deg, #e7ecf1, #f7f9fb 52%, #e5f3ec);
+    }
+}

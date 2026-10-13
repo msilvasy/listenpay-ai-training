@@ -1,0 +1,12 @@
+<article class="content-item">
+  <span class="video-thumb">▶</span>
+  <div class="content-info">
+    <h3>{{ item().title }}</h3>
+    <span>{{ item().publishedAt }}</span>
+  </div>
+  <b
+    class="content-status"
+    [class.done]="item().state === 'complete'"
+    [class.partial]="item().state === 'in-progress'"
+  >{{ item().state === 'complete' ? '✓ ' : '' }}{{ item().statusLabel }}</b>
+</article>

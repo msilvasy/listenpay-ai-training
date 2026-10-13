@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ListenPay Programs</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a2a4a">
+  <script>
+    // Paint the industry theme before Angular boots so there is no flash of the wrong palette.
+    // Mirrors SessionService/ThemeService: ?industry= from the Dashboard Suite, else the stored choice.
+    (function () {
+      var themes = { 'health-care': 'HealthcareMode', industrial: 'IndustrialMode', commercial: 'CommercialMode' };
+      try {
+        var fromUrl = new URLSearchParams(location.search).get('industry');
+        var industry = themes[fromUrl] ? fromUrl : sessionStorage.getItem('listenpay-programs-industry') || 'health-care';
+        var off = !themes[fromUrl] && localStorage.getItem('listenpay-theme') === 'default';
+        if (themes[industry] && !off) document.documentElement.setAttribute('data-theme', themes[industry]);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'HealthcareMode');
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="icon" type="image/png" href="/manus-storage/listenpay-logo-mark_9a520312.png">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

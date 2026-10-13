@@ -1,0 +1,22 @@
+<section class="video-overlay" (click)="close()">
+  <div class="video-dialog" role="dialog" aria-modal="true" aria-labelledby="video-dialog-title"
+    (click)="$event.stopPropagation()">
+    <header class="video-dialog-header">
+      <img src="/assets/images/listenpay-supplied-logo.png" alt="ListenPay" class="video-dialog-logo" />
+      <button #closeButton class="modal-close video-dialog-close" type="button" aria-label="Close video"
+        (click)="close()">×</button>
+    </header>
+    <div class="video-frame">
+      @if (status() === 'loading') {
+      <div class="video-frame-state" role="status">Loading video…</div>
+      }
+      @if (status() === 'error') {
+      <div class="video-frame-state" role="alert">This video can't be played right now.</div>
+      }
+      <div class="video-frame-player"><div #playerHost></div></div>
+    </div>
+    <footer class="video-dialog-footer">
+      <h2 id="video-dialog-title">{{ video().title }}</h2>
+    </footer>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<div class="section-header">
+  <h2>
+    <span class="section-category-icon">
+      @if (iconSrc(); as icon) { <img [src]="icon" alt="" /> } @else { ▶ }
+    </span>
+    {{ categoryTitle() || 'Videos' }}
+  </h2>
+  @if (videos()?.length) {
+  <span class="video-count">{{ videos()!.length }} videos · {{ averageProgress() }}% complete</span>
+  }
+</div>
+
+@if (videos(); as list) {
+@if (loadError()) {
+<div class="loading-panel program-message">
+  <span>We couldn't load these videos.</span>
+  <button type="button" class="program-retry" (click)="retry()">Try again</button>
+</div>
+} @else if (list.length === 0) {
+<div class="loading-panel program-message">No videos in this category yet.</div>
+} @else {
+<div class="content-list">
+  @for (video of list; track video.id) {
+  <button type="button" class="content-item content-item-button" (click)="open(video)"
+    [attr.aria-label]="'Play ' + video.title">
+    <span class="video-thumb">▶</span>
+    <span class="content-info">
+      <strong class="content-title">{{ video.title }}</strong>
+      <span>{{ formatDate(video.dateCreated) }}</span>
+    </span>
+    <b class="content-status" [class.done]="percent(video) >= 100"
+      [class.partial]="percent(video) > 0 && percent(video) < 100">{{ statusLabel(video) }}</b>
+  </button>
+  }
+</div>
+}
+} @else {
+<div class="loading-panel">Loading videos…</div>
+}
+
+@if (selected(); as video) {
+<app-video-player-modal [video]="video" (playStarted)="onPlayback($event)" (playStopped)="onPlayback($event)"
+  (videoComplete)="onPlayback($event)" (closed)="close()" />
+}

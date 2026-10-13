@@ -1,0 +1,45 @@
+@if (isOpen()) {
+<section class="login-overlay" aria-modal="true" aria-labelledby="login-title" role="dialog">
+  <div class="login-dialog">
+    <div class="login-visual" aria-hidden="true">
+      <img src="/assets/images/nurse.jpg" alt="" />
+      <div class="login-visual-overlay"></div>
+      <img class="login-supplied-logo" src="/assets/images/listenpay-supplied-logo.png" alt="ListenPay" />
+      <div class="login-visual-copy">
+        <span class="eyebrow">Listen. Learn. Earn.</span>
+        <h2>Progress that supports your practice.</h2>
+        <p>Complete trusted learning material and keep every milestone in view.</p>
+      </div>
+    </div>
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="signIn(loginForm)" novalidate>
+      <button class="modal-close" type="button" aria-label="Close sign-in dialog" (click)="close()">×</button>
+      <div class="login-mark" aria-hidden="true"><img src="/assets/images/listenpay-logo-mark.png" alt="" /></div>
+      <span class="login-kicker">Secure member access</span>
+      <h1 id="login-title">Welcome back.</h1>
+      <p class="login-intro">Sign in to access your learning plan and earned balance.</p>
+
+      <!-- <label for="email">Work email</label>
+        <input #emailControl="ngModel" id="email" name="email" type="email" autocomplete="email" placeholder="name@organization.com" required email [(ngModel)]="email" [class.input-error]="showError(emailControl)" [attr.aria-invalid]="showError(emailControl)" aria-describedby="email-error" />
+        @if (showError(emailControl)) {
+          <p class="field-error" id="email-error" role="alert">{{ emailControl.errors?.['required'] ? 'Enter your work email.' : 'Enter a valid email address, such as name@organization.com.' }}</p>
+        }
+
+        <label for="password">Password</label>
+        <div class="password-field">
+          <input #passwordControl="ngModel" id="password" name="password" [type]="showPassword() ? 'text' : 'password'" autocomplete="current-password" placeholder="Enter your password" required minlength="8" [(ngModel)]="password" [class.input-error]="showError(passwordControl)" [attr.aria-invalid]="showError(passwordControl)" aria-describedby="password-error" />
+          <button type="button" class="password-toggle" (click)="showPassword.set(!showPassword())" [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">{{ showPassword() ? 'Hide' : 'Show' }}</button>
+        </div>
+        @if (showError(passwordControl)) {
+          <p class="field-error" id="password-error" role="alert">{{ passwordControl.errors?.['required'] ? 'Enter your password.' : 'Use at least 8 characters for your password.' }}</p>
+        } -->
+
+      <div class="login-options"><label class="remember"><input type="checkbox" [(ngModel)]="remember"
+            name="remember" /> Remember this device</label><button type="button" class="text-button">Forgot
+          password?</button></div>
+      <button class="signin-button" type="submit">Sign in to ListenPay <span>→</span></button>
+      <p class="login-footnote">By continuing, you acknowledge the portal’s <button type="button"
+          class="text-button">Privacy Notice</button>.</p>
+    </form>
+  </div>
+</section>
+}
